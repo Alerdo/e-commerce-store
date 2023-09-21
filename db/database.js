@@ -12,6 +12,8 @@ import OrderItem from '../models/order_item.js';
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
+
+//Having the models here is an advantage as well when we need to import a couple at the same time .
 // Initialize models
 User.initialize(sequelize, Sequelize.DataTypes);
 Product.initialize(sequelize, Sequelize.DataTypes);
@@ -20,12 +22,37 @@ Cart.initialize(sequelize, Sequelize.DataTypes);
 CartItem.initialize(sequelize, Sequelize.DataTypes);
 OrderItem.initialize(sequelize, Sequelize.DataTypes);
 
-// This will create tables if they don't exist yet: 
+// This will create tables if they don't exist, use it just for sturctural changes on the tables  
 // sequelize.sync().then(() => {
 //   console.log('Tables have been synchronized.');
 // }).catch(error => {
 //   console.error('Error synchronizing tables:', error);
 // });
+
+
+// User relationships
+User.hasMany(Order, { foreignKey: 'user_id', as: 'orders' });
+User.hasOne(Cart, { foreignKey: 'user_id', as: 'cart' });
+
+// Cart relationships
+Cart.belongsTo(User, { foreignKey: 'user_id' });
+Cart.hasMany(CartItem, { foreignKey: 'cart_id', as: 'items' });
+
+// Order relationships
+Order.belongsTo(User, { foreignKey: 'user_id' });
+Order.hasMany(OrderItem, { foreignKey: 'order_id', as: 'items' });
+
+// Product relationships
+Product.belongsToMany(Cart, { through: CartItem, foreignKey: 'product_id' });
+Product.belongsToMany(Order, { through: OrderItem, foreignKey: 'product_id' });
+
+// CartItem relationships
+CartItem.belongsTo(Cart, { foreignKey: 'cart_id' });
+CartItem.belongsTo(Product, { foreignKey: 'product_id' });
+
+// OrderItem relationships
+OrderItem.belongsTo(Order, { foreignKey: 'order_id' });
+OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
 
 // Check database connection
 sequelize.authenticate()
