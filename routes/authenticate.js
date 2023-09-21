@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 import hashPassword from "./helperFunctions.js";
 import db from '../db/database.js';
-const { User } = db;
+const { User, Cart } = db;
 
 export default (app, passport) => {
     app.use('/authentication', router);
@@ -27,6 +27,20 @@ export default (app, passport) => {
                 password,
                 name,
                 address
+            });
+
+             // Log the user in
+            req.login(user, async (err) => {
+                if (err) {
+                    return res.status(500).send({ message: 'Could not log in user' });
+                }
+                
+                // Create a new cart for the user
+                try {
+                    await Cart.create({ user_id: user.id });
+                } catch (error) {
+                    console.error('Error creating cart:', error);
+                }
             });
 
             res.status(201).send({
