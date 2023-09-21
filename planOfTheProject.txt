@@ -1,0 +1,86 @@
+First page:
+Log in, and register page. 
+For each of them the database will be used.
+
+When a user log in, the credentinals will be checked with the database. And to register the user, the details will be put into the database.
+
+If log in is succesfull, the Products page will show.
+
+
+Use session, passport, user authentication , 
+DATA BASE TO SAVE ALL OF THESE.
+
+
+Second page:
+Products, (profile, checkout, button) 
+
+CRUD OPERATIONG ON PROFILE (EDIT PROFILE)
+CRUD OPERATION ON CHECKOUT (ADD TO CHART, DELETE, PAY)
+LOG OUT
+
+Document the API using Swagger 
+
+
+1. Project Setup:
+Initialize a Git Repository: Run git init to start tracking your project. Make regular commits with clear messages.
+Set Up Node.js & Express: Initialize a Node.js project with npm init and set up a basic Express server.
+Database Setup: Use Postgres to set up your database. Choose an ORM or query builder (like Sequelize or Knex) to make database operations smoother.
+2. Database Design:
+Nesecary tables:
+
+users: for storing user data (id, email, password, etc.)
+products: for storing product details (id, name, description, price, etc.)
+cart: to represent each user's shopping cart.
+cart_items: to represent individual items in a cart.
+orders: to store information about placed orders.
+order_items: to represent items within each order.
+3. Setting Up Middleware:
+Body Parsers & CORS: Use body-parser to parse incoming JSON and URL-encoded data. Allow cross-origin requests with CORS.
+Session & Authentication: Set up sessions (using express-session) and integrate Passport for authentication.
+Error Handling
+4. API Endpoints:
+Implement the necessary CRUD operations for:
+
+Users:
+
+Register
+Login
+View/Update profile
+Delete account
+
+Products:
+
+Add a new product (admin functionality)
+View products
+Update a product's details (admin functionality)
+Delete a product (admin functionality)
+Cart:
+
+Add items to a cart
+View cart items
+Update quantities of items in the cart
+Remove items from the cart
+Orders:
+
+Place an order
+View orders
+Update order status (admin functionality, e.g., 'shipped', 'delivered')
+Cancel/delete an order
+5. Implement Authentication:
+Use Passport with the "local" strategy for email and password authentication.
+Protect routes as necessary, e.g., only logged-in users should be able to add items to their cart.
+6. API Documentation:
+Document all your endpoints using Swagger. This helps other developers understand how to use your API.
+7. Testing:
+Write unit tests for your models and integration tests for your routes. Tools like mocha, chai, or jest can be useful.
+8. Deployment:
+Choose a cloud provider (like Heroku, AWS, DigitalOcean) to deploy your API.
+Deploy your Postgres database as well using the services provided by the cloud provider.
+9. Version Control & Collaboration:
+Use Git branches for developing features or fixing bugs.
+Push your code to GitHub and maintain a clean commit history.
+Consider using Git features like pull requests for code review if working in a team.
+10. Additional Considerations:
+Environment Variables: Store sensitive data like database credentials or secret keys using environment variables.
+Rate Limiting: Consider adding rate limiting for better security.
+Logging: Use a logging library like winston to keep track of server operations and potential errors.
