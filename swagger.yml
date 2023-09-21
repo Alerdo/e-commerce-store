@@ -1,0 +1,6 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: E-commerce REST API
+  description: A brief description of your API
+paths: {}
