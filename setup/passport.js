@@ -14,21 +14,26 @@ export default (app) => {
   app.use(passport.initialize());  
   app.use(passport.session());
   
-  // Set method to serialize data to store in cookie
-  passport.serializeUser((user, done) => {
+// Set method to serialize data to store in cookie
+passport.serializeUser((user, done) => {
+    console.log("Serializing user:", user);
+    console.log("User ID being serialized:", user.id);
     done(null, user.id);
   });
   
   // Set method to deserialize data stored in cookie and attach to req.user
   passport.deserializeUser(async (id, done) => {
-   try {
-       const user = await User.findByPk(id); // Use Sequelize's findByPk to fetch user by primary key
-       done(null, user);
-   } catch (err) {
-       done(err);
-   }
-});
-
+    console.log("Deserializing user with ID:", id);
+    try {
+      const user = await User.findByPk(id); // Use Sequelize's findByPk to fetch user by primary key
+      console.log("User deserialized:", user);
+      done(null, user);
+    } catch (err) {
+      console.log("Error in deserialization:", err);
+      done(err);
+    }
+  });
+  
 
 
 

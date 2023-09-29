@@ -4,12 +4,18 @@ import session from "express-session";
 import morgan from 'morgan';
 import flash from 'connect-flash';
 
+import cookieParser from 'cookie-parser';
+
 
 
 
 export default (app) => {
     // Allow all origins by default, enabling all cross-origin resources
-    app.use(cors());
+    app.use(cors({
+        origin: 'http://localhost:3000', // change this to env dont forget
+        credentials: true
+    }));
+    
 
     // Transform request's raw strings into JSON 
     app.use(bodyParser.json());
@@ -25,11 +31,13 @@ export default (app) => {
 
     // Use this when your app is sitting behind a proxy and you want to trust the first proxy
     app.set('trust proxy', 1);
+    app.use(cookieParser());
 
+    
     // Session configuration
     app.use(
         session({
-            secret: process.env.SESSION_SECRET,  // TODO: Change this to a stronger secret in production!
+            secret: process.env.SESSION_SECRET, 
             resave: false,
             saveUninitialized: false,
             cookie: {
@@ -40,7 +48,7 @@ export default (app) => {
     );
 
     app.use(flash());
-    console.log('Session secret:', process.env.SESSION_SECRET);
+  
 
     return app;
 }

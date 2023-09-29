@@ -8,56 +8,42 @@ export default (app, passport) => {
     app.use('/authentication', router);
 
     // Registration Endpoint
+    // Registration Endpoint
+
     router.post('/register', async (req, res) => {
         try {
             const { email, name, address } = req.body;
-
-            const checkEmail = await User.findOne({ where: { email: email } }); //we use User.findOne to check if a user with this email exist
-            if (checkEmail) {
-                return res.status(409).send({
-                    message: 'User with this email exists, please try to log in or choose another email'
-                });
+            let { password } = req.body;
+    
+            // Check if user with provided email already exists
+            const existingUser = await User.findOne({ where: { email: email } });
+            if (existingUser) {
+                return res.status(400).json({ success: false, message: 'Email already in use' });
             }
-
-            let { password } = req.body; //using let to destruct the password from the req, avoid type error: assign to constant 
-            password = await hashPassword(password); //hashing the password, imported function 
-
+    
+            password = await hashPassword(password); 
+    
+            // Create a new user
             const user = await User.create({
                 email,
                 password,
                 name,
                 address
             });
-
-             // Log the user in
-            req.login(user, async (err) => {
-                if (err) {
-                    return res.status(500).send({ message: 'Could not log in user' });
-                }
-                
-                // Create a new cart for the user
-                try {
-                    await Cart.create({ user_id: user.id });
-                } catch (error) {
-                    console.error('Error creating cart:', error);
-                }
-            });
-
-            res.status(201).send({
-                message: "User created successfully",
-                user: {
-                    id: user.id,
-                    email,
-                    name,
-                    address
-                }
-            });
+        
+            // Create a new cart for the user upon registration
+            await Cart.create({ user_id: user.id });
+    
+            // Response
+            res.status(200).json({ success: true, message: 'User registered successfully!' });
+    
         } catch (error) {
-            console.error('Error creating user:', error);
-            res.status(500).send({ message: error.message });
+            console.error('Error during registration:', error);
+            res.status(500).json({ success: false, message: 'Server error during registration' });
         }
     });
-
+    
+   
     // Login
     router.post('/login', (req, res, next) => {
         passport.authenticate('local', (err, user, info) => {
@@ -82,4 +68,16 @@ export default (app, passport) => {
             });
         })(req, res, next);
     });
+    
+   
+        // Logout Endpoint
+        router.post('/logout', (req, res, next) => {
+            req.logout((err) => {
+                if (err) { return next(err); }
+               return  res.json({ success: true, message: 'Successfully logged out!' })
+              });
+              
+        });
+        
+       
 };

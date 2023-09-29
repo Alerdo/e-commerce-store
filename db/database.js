@@ -22,7 +22,7 @@ Cart.initialize(sequelize, Sequelize.DataTypes);
 CartItem.initialize(sequelize, Sequelize.DataTypes);
 OrderItem.initialize(sequelize, Sequelize.DataTypes);
 
-// This will create tables if they don't exist, use it just for sturctural changes on the tables  
+// This will create tables if they don't exist, .sync will sync the models with db  
 // sequelize.sync().then(() => {
 //   console.log('Tables have been synchronized.');
 // }).catch(error => {
@@ -33,6 +33,8 @@ OrderItem.initialize(sequelize, Sequelize.DataTypes);
 // User relationships
 User.hasMany(Order, { foreignKey: 'user_id', as: 'orders' });
 User.hasOne(Cart, { foreignKey: 'user_id', as: 'cart' });
+// User.hasMany(Cart, {foreignKey: 'user_id', onDelete: 'CASCADE'
+// });
 
 // Cart relationships
 Cart.belongsTo(User, { foreignKey: 'user_id' });

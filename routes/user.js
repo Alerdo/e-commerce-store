@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 import db from '../db/database.js';
 
-const { User } = db;
+const { User, Cart, CartItem } = db;
 
 export default (app, passport) => {
     app.use('/user', router);
@@ -10,9 +10,9 @@ export default (app, passport) => {
     // Middleware to check if user is authenticated
     const isAuthenticated = (req, res, next) => {
         if (req.isAuthenticated()) return next();
-        res.status(401).send({ message: 'Unauthorized' });
+        res.status(401).send({ message: `Unathorized, Please Login to access profile.`, status: 401 });
     };
-
+    
     // Read user profile
     router.get('/profile', isAuthenticated, async (req, res) => {
         try {
@@ -53,22 +53,35 @@ export default (app, passport) => {
         }
     });
 
-    // Delete user
-    router.delete('/profile', isAuthenticated, async (req, res) => {
+    router.delete('/profile', async (req, res) => {
         try {
             const user = await User.findByPk(req.user.id);
-
+    
             if (!user) {
                 return res.status(404).send({ message: 'User not found' });
             }
-
+    
+            const userCart = await Cart.findOne({ where: { user_id: user.id } });
+            if (userCart) {
+                await CartItem.destroy({ where: { cart_id: userCart.id } });
+                //  delete the cart itself
+                await userCart.destroy();
+            }
+    
+            //  safely delete the user
             await user.destroy();
-            req.logout();
+
+            req.logout((err) => {
+                if (err) { return next(err); }
+                // res.redirect('/');  // redirecting after logout
+            });
 
             res.status(200).send({ message: 'User deleted successfully' });
+
         } catch (error) {
             console.error('Error deleting user:', error);
             res.status(500).send({ message: error.message });
         }
     });
+    
 };

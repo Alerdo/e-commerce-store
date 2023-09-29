@@ -4,7 +4,7 @@ import loaders from './setup/index.js';
 import dotenv from 'dotenv';
 
 
-const PORT = 3000;
+const PORT = 3001;
 
 const app = express();
 

@@ -9,7 +9,12 @@ export default (app, passport) => {
     app.use('/cart', router);
 
     
-    
+      // Middleware to check if user is authenticated
+      const isAuthenticated = (req, res, next) => {
+        if (req.isAuthenticated()) return next();
+        res.status(401).send({ message: 'Unauthorized' });
+    };
+
     // Add Item to Order
     router.post('/add-item-to-order/:orderId', isAuthenticated, async (req, res) => {
         try {
