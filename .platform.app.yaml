@@ -1,6 +1,6 @@
 # .platform.app.yaml
 name: app
-type: "nodejs:18.13.0"
+type: "nodejs:16"
   # Replace <your_node_version> with your desired Node.js version, e.g., 14 or 16.
 disk: 512
 
