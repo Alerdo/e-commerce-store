@@ -22,9 +22,7 @@ Document the API using Swagger
 
 
 1. Project Setup:
-Initialize a Git Repository: Run git init to start tracking your project. Make regular commits with clear messages.
-Set Up Node.js & Express: Initialize a Node.js project with npm init and set up a basic Express server.
-Database Setup: Use Postgres to set up your database. Choose an ORM or query builder (like Sequelize or Knex) to make database operations smoother.
+
 2. Database Design:
 Nesecary tables:
 
@@ -78,9 +76,8 @@ Choose a cloud provider (like Heroku, AWS, DigitalOcean) to deploy your API.
 Deploy your Postgres database as well using the services provided by the cloud provider.
 9. Version Control & Collaboration:
 Use Git branches for developing features or fixing bugs.
-Push your code to GitHub and maintain a clean commit history.
-Consider using Git features like pull requests for code review if working in a team.
-10. Additional Considerations:
+Push your code to GitHub .
+
+10. Additional :
 Environment Variables: Store sensitive data like database credentials or secret keys using environment variables.
-Rate Limiting: Consider adding rate limiting for better security.
-Logging: Use a logging library like winston to keep track of server operations and potential errors.
+Logging: Use a logging library like winston to keep track of server operations and potential errors, maybe!

@@ -1,0 +1,11 @@
+# .platform/routes.yaml
+
+# Redirect requests from www subdomain to the root domain.
+"https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"
+
+# Primary route: All traffic to your domain is directed to the 'app' application.
+"https://{default}/":
+    type: upstream
+    upstream: "app:http"

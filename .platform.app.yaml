@@ -1,0 +1,21 @@
+# .platform.app.yaml
+name: app
+type: "nodejs:18.13.0"
+  # Replace <your_node_version> with your desired Node.js version, e.g., 14 or 16.
+disk: 512
+
+relationships:
+    database: "dbpostgres:postgresql"
+
+hooks:
+    build: |
+        npm install
+
+web:
+    commands:
+        start: "npm start"  # Make sure your package.json has a start script.
+    locations:
+        "/":
+            root: "public"  # Or wherever your public assets are stored.
+            passthru: true  # Route all to the Node.js app.
+
