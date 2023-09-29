@@ -23,7 +23,7 @@ export default (app, passport) => {
     
             password = await hashPassword(password); 
     
-            // Create a new user
+            //  Create a new user
             const user = await User.create({
                 email,
                 password,
