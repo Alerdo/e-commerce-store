@@ -1,13 +1,6 @@
 import dotenv from 'dotenv';
-// const dotenv = require('dotenv');
 
 dotenv.config();
-
-let databaseConfig;
-if (process.env.PLATFORM_RELATIONSHIPS) {
-    const relationships = JSON.parse(Buffer.from(process.env.PLATFORM_RELATIONSHIPS, 'base64').toString());
-    databaseConfig = relationships.database[0];
-}
 
 const config = {
   development: {
@@ -33,7 +26,7 @@ const config = {
             rejectUnauthorized: false
         }
     }
-}
+  }
 };
 
 export default config;
