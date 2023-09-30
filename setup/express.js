@@ -4,20 +4,20 @@ import session from "express-session";
 import morgan from 'morgan';
 import flash from 'connect-flash';
 import cookieParser from 'cookie-parser';
-import { Sequelize } from 'sequelize';
+// import { Sequelize } from 'sequelize';
 import SequelizeStoreInit from 'connect-session-sequelize'; //session memory 
 
 // Initialize Sequelize
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    protocol: 'postgres',
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
-    }
-});
+// const sequelize = new Sequelize(process.env.DATABASE_URL, {
+//     dialect: 'postgres',
+//     protocol: 'postgres',
+//     dialectOptions: {
+//         ssl: {
+//             require: true,
+//             rejectUnauthorized: false
+//         }
+//     }
+// });
 
 const SequelizeStore = SequelizeStoreInit(session.Store);
 

@@ -1,4 +1,3 @@
-
 import { Sequelize } from 'sequelize';
 import configJson from '../config/config.js';
 
@@ -13,22 +12,19 @@ import OrderItem from '../models/order_item.js';
 const env = process.env.NODE_ENV || 'development';
 const config = configJson[env];
 
-let sequelize;
-
-if (process.env.DATABASE_URL) {
-    sequelize = new Sequelize(process.env.DATABASE_URL, {
-        dialect: 'postgres',
-        protocol: 'postgres',
-        dialectOptions: {
-            ssl: {
-                require: true,
-                rejectUnauthorized: false
-            }
+const sequelize = new Sequelize(process.env.DATABASE_URL || config.database, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    username: config.username,
+    password: config.password,
+    host: config.host,
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
         }
-    });
-} else {
-    sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+    }
+});
 
 // Initialize models
 User.initialize(sequelize, Sequelize.DataTypes);
@@ -38,19 +34,9 @@ Cart.initialize(sequelize, Sequelize.DataTypes);
 CartItem.initialize(sequelize, Sequelize.DataTypes);
 OrderItem.initialize(sequelize, Sequelize.DataTypes);
 
-// This will create tables if they don't exist, .sync will sync the models with db  
-// sequelize.sync().then(() => {
-//   console.log('Tables have been synchronized.');
-// }).catch(error => {
-//   console.error('Error synchronizing tables:', error);
-// });
-
-
 // User relationships
 User.hasMany(Order, { foreignKey: 'user_id', as: 'orders' });
 User.hasOne(Cart, { foreignKey: 'user_id', as: 'cart' });
-// User.hasMany(Cart, {foreignKey: 'user_id', onDelete: 'CASCADE'
-// });
 
 // Cart relationships
 Cart.belongsTo(User, { foreignKey: 'user_id' });
@@ -93,3 +79,4 @@ const db = {
 };
 
 export default db;
+export { sequelize };
