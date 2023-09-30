@@ -10,8 +10,10 @@ import Order from '../models/order.js';
 import Cart from '../models/cart.js';
 import CartItem from '../models/cart_item.js';
 import OrderItem from '../models/order_item.js';
+import { sequelize } from '../setup/express.js';
 
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+// const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 
 //Having the models here is an advantage as well when we need to import a couple at the same time .

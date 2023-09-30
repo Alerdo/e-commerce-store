@@ -64,3 +64,7 @@ export default (app) => {
 
     return app;
 }
+
+
+export { sequelize };
+
