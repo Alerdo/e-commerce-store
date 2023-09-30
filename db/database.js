@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize';
 import configJson from '../config/config.js' ;
-const config = configJson.development;
+const env = process.env.NODE_ENV || 'development';
+const config = configJson[env];
 
 // Import models
 import User from '../models/user.js';
