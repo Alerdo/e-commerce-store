@@ -1,18 +1,20 @@
-import { Sequelize } from 'sequelize';
-import configJson from '../config/config.js' ;
-const env = process.env.NODE_ENV || 'development';
-const config = configJson[env];
 
-// Import models
+import { Sequelize } from 'sequelize';
+import configJson from '../config/config.js';
+
+// Models
 import User from '../models/user.js';
 import Product from '../models/product.js';
 import Order from '../models/order.js';
 import Cart from '../models/cart.js';
 import CartItem from '../models/cart_item.js';
 import OrderItem from '../models/order_item.js';
-import { sequelize } from '../setup/express.js';
+
+const env = process.env.NODE_ENV || 'development';
+const config = configJson[env];
 
 let sequelize;
+
 if (process.env.DATABASE_URL) {
     sequelize = new Sequelize(process.env.DATABASE_URL, {
         dialect: 'postgres',
@@ -28,10 +30,6 @@ if (process.env.DATABASE_URL) {
     sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-// const sequelize = new Sequelize(config.database, config.username, config.password, config);
-
-
-//Having the models here is an advantage as well when we need to import a couple at the same time .
 // Initialize models
 User.initialize(sequelize, Sequelize.DataTypes);
 Product.initialize(sequelize, Sequelize.DataTypes);
