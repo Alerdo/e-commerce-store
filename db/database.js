@@ -12,6 +12,21 @@ import CartItem from '../models/cart_item.js';
 import OrderItem from '../models/order_item.js';
 import { sequelize } from '../setup/express.js';
 
+let sequelize;
+if (process.env.DATABASE_URL) {
+    sequelize = new Sequelize(process.env.DATABASE_URL, {
+        dialect: 'postgres',
+        protocol: 'postgres',
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        }
+    });
+} else {
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
 // const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
