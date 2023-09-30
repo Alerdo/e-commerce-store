@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import flash from 'connect-flash';
 import cookieParser from 'cookie-parser';
 // import { sequelize } from 'sequelize';
-import sequelize from '../db/database'
+import sequelize from '../db/database.js'
 import SequelizeStoreInit from 'connect-session-sequelize'; //session memory 
 
 // Initialize Sequelize
