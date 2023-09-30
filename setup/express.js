@@ -66,5 +66,5 @@ export default (app) => {
 }
 
 
-export { sequelize };
+// export { sequelize };
 
