@@ -4,7 +4,8 @@ import session from "express-session";
 import morgan from 'morgan';
 import flash from 'connect-flash';
 import cookieParser from 'cookie-parser';
-// import { Sequelize } from 'sequelize';
+// import { sequelize } from 'sequelize';
+import sequelize from '../db/database'
 import SequelizeStoreInit from 'connect-session-sequelize'; //session memory 
 
 // Initialize Sequelize
