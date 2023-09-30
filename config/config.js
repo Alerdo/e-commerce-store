@@ -24,13 +24,15 @@ const config = {
     dialect: process.env.TEST_DB_DIALECT
   },
   production: {
-    username: databaseConfig ? databaseConfig.username : process.env.PRODUCTION_DB_USERNAME,
-    password: databaseConfig ? databaseConfig.password : process.env.PRODUCTION_DB_PASSWORD,
-    database: databaseConfig ? databaseConfig.path : process.env.PRODUCTION_DB_NAME,
-    host: databaseConfig ? databaseConfig.host : process.env.PRODUCTION_DB_HOST,
-    dialect: 'postgres', // Assuming it's always PostgreSQL for production on Platform.sh
-    port: databaseConfig ? databaseConfig.port : undefined
-  }
+    use_env_variable: 'DATABASE_URL',
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    }
+}
 };
 
 export default config;
