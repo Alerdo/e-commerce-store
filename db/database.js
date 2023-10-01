@@ -66,12 +66,12 @@ OrderItem.initialize(sequelize, Sequelize.DataTypes);
 //     console. error('Unable to connect to the database:', error);
 //   });
 
-export default db = {
-//   Sequelize,
-  User,
-  Product,
-  Order,
-  Cart,
-  CartItem,
-  OrderItem
-};
+// export default db = {
+// //   Sequelize,
+//   User,
+//   Product,
+//   Order,
+//   Cart,
+//   CartItem,
+//   OrderItem
+// };
