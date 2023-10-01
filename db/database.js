@@ -1,21 +1,37 @@
+
+
 import { Sequelize } from 'sequelize';
-import { sequelize } from '../setup/express.js';
+import {sequelize} from '../setup/express.js'
+
+// const env = process.env.NODE_ENV || 'development';
+
+// const sequelize = new Sequelize(process.env.DATABASE_URL, {
+//     dialect: 'postgres',
+//     protocol: 'postgres',
+//     dialectOptions: {
+//         ssl: {
+//             require: true,
+//             rejectUnauthorized: false
+//         }
+//     }
+// });
 
 // Models
-import UserModel from '../models/user.js';
-import ProductModel from '../models/product.js';
-import OrderModel from '../models/order.js';
-import CartModel from '../models/cart.js';
-import CartItemModel from '../models/cart_item.js';
-import OrderItemModel from '../models/order_item.js';
+import User from '../models/user.js';
+import Product from '../models/product.js';
+import Order from '../models/order.js';
+import Cart from '../models/cart.js';
+import CartItem from '../models/cart_item.js';
+import OrderItem from '../models/order_item.js';
 
 // Initialize models
-const User = UserModel.initialize(sequelize, Sequelize.DataTypes);
- ProductModel.initialize(sequelize, Sequelize.DataTypes);
-const Order = OrderModel.initialize(sequelize, Sequelize.DataTypes);
-const Cart = CartModel.initialize(sequelize, Sequelize.DataTypes);
-const CartItem = CartItemModel.initialize(sequelize, Sequelize.DataTypes);
-const OrderItem = OrderItemModel.initialize(sequelize, Sequelize.DataTypes);
+User.initialize(sequelize, Sequelize.DataTypes);
+Product.initialize(sequelize, Sequelize.DataTypes);
+Order.initialize(sequelize, Sequelize.DataTypes);
+Cart.initialize(sequelize, Sequelize.DataTypes);
+CartItem.initialize(sequelize, Sequelize.DataTypes);
+OrderItem.initialize(sequelize, Sequelize.DataTypes);
+
 
 // User relationships
 User.hasMany(Order, { foreignKey: 'user_id', as: 'orders' });
@@ -47,13 +63,14 @@ sequelize.authenticate()
     console.log('Connection has been established successfully.');
   })
   .catch(error => {
-    console.error('Unable to connect to the database:', error);
+    console. error('Unable to connect to the database:', error);
   });
+
 
 
   const db = {
     User,
-    ProductModel,
+    Product,
     Order,
     Cart,
     CartItem,
