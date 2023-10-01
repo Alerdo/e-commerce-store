@@ -66,7 +66,7 @@ OrderItem.initialize(sequelize, Sequelize.DataTypes);
 //     console. error('Unable to connect to the database:', error);
 //   });
 
-export {
+export default{
 //   Sequelize,
   User,
   Product,
