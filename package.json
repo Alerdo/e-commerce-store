@@ -12,7 +12,8 @@
     "migrate": "npx sequelize-cli db:migrate",
     "sequelize": "sequelize", 
     "db:migrate": "sequelize db:migrate",
-    "heroku-postbuild": "sequelize db:migrate"
+    "heroku-postbuild": "sequelize db:migrate",
+    "db:seed": "sequelize db:seed:all"
   },
   "keywords": [
     "\"e-commerce\"",
