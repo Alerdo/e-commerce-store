@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import db from '../db/database.js';
-const {Product} = db;
+const {ProductModel} = db;
 
 // import Product from '../models/product.js';
 
@@ -19,7 +19,7 @@ export default (app, passport) => {
 
     router.get('/', async (req, res) => {
         try {
-          const products = await Product.findAll();
+          const products = await ProductModel.findAll();
           if(products) {
             res.status(200).json(products);
           } else {

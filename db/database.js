@@ -11,7 +11,7 @@ import OrderItemModel from '../models/order_item.js';
 
 // Initialize models
 const User = UserModel.initialize(sequelize, Sequelize.DataTypes);
-const Product = ProductModel.initialize(sequelize, Sequelize.DataTypes);
+ ProductModel.initialize(sequelize, Sequelize.DataTypes);
 const Order = OrderModel.initialize(sequelize, Sequelize.DataTypes);
 const Cart = CartModel.initialize(sequelize, Sequelize.DataTypes);
 const CartItem = CartItemModel.initialize(sequelize, Sequelize.DataTypes);
@@ -53,7 +53,7 @@ sequelize.authenticate()
 
   const db = {
     User,
-    Product,
+    ProductModel,
     Order,
     Cart,
     CartItem,
