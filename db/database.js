@@ -1,5 +1,20 @@
+
+
 import { Sequelize } from 'sequelize';
 import configJson from '../config/config.js';
+
+const env = process.env.NODE_ENV || 'development';
+
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    }
+});
 
 // Models
 import User from '../models/user.js';
@@ -9,30 +24,14 @@ import Cart from '../models/cart.js';
 import CartItem from '../models/cart_item.js';
 import OrderItem from '../models/order_item.js';
 
-const env = process.env.NODE_ENV || 'development';
-const config = configJson[env];
+// Initialize models
+User.initialize(sequelize, Sequelize.DataTypes);
+Product.initialize(sequelize, Sequelize.DataTypes);
+Order.initialize(sequelize, Sequelize.DataTypes);
+Cart.initialize(sequelize, Sequelize.DataTypes);
+CartItem.initialize(sequelize, Sequelize.DataTypes);
+OrderItem.initialize(sequelize, Sequelize.DataTypes);
 
-const sequelize = new Sequelize(process.env.DATABASE_URL || config.database, {
-    dialect: 'postgres',
-    protocol: 'postgres',
-    username: config.username,
-    password: config.password,
-    host: config.host,
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
-    }
-});
-
-// // Initialize models
-// User.initialize(sequelize, Sequelize.DataTypes);
-// Product.initialize(sequelize, Sequelize.DataTypes);
-// Order.initialize(sequelize, Sequelize.DataTypes);
-// Cart.initialize(sequelize, Sequelize.DataTypes);
-// CartItem.initialize(sequelize, Sequelize.DataTypes);
-// OrderItem.initialize(sequelize, Sequelize.DataTypes);
 
 // // User relationships
 // User.hasMany(Order, { foreignKey: 'user_id', as: 'orders' });
@@ -67,7 +66,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL || config.database, {
 //     console. error('Unable to connect to the database:', error);
 //   });
 
-const db = {
+export {
   sequelize,
   Sequelize,
   User,
@@ -77,6 +76,3 @@ const db = {
   CartItem,
   OrderItem
 };
-
-export default db;
-
