@@ -17,20 +17,21 @@ export default (app, passport) => {
   // };
 
 
-    router.get('/', async (req, res) => {
-        try {
-          const products = await Product.findAll();
-          if(products) {
+  router.get('/', async (req, res) => {
+    try {
+        const products = await Product.findAll();
+        if (products) {
             res.status(200).json(products);
-          } else {
-            res.status(404).json({message: 'User is not authenticated'})
-          }
-          
-        } catch (error) {
-          res.status(500).json({ error: `this is the log of the error: ${error}`});
+        } else {
+            res.status(404).json({ message: 'No products found.' }); // Adjusted message for clarity
         }
-      });
-      
-      
-}
 
+    } catch (error) {
+        res.status(500).json({ 
+            errorName: error.name, 
+            errorMessage: error.message, 
+            errorStack: process.env.NODE_ENV === 'development' ? error.stack : undefined // include stack trace only in development environment
+        });
+    }
+});
+}
