@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "npx sequelize-cli db:migrate",
     "sequelize": "sequelize", 
-    "db:migrate": "sequelize db:migrate" 
+    "db:migrate": "sequelize db:migrate",
+    "heroku-postbuild": "sequelize db:migrate"
   },
   "keywords": [
     "\"e-commerce\"",
