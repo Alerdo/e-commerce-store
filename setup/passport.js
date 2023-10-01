@@ -1,8 +1,7 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-
-import User from '../models/user.js';
-
+import db from '../db/database.js';
+const { User } = db;
 import bcrypt from 'bcryptjs';
 
 
