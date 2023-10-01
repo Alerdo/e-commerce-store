@@ -1,10 +1,13 @@
     
 import express from 'express';
 const router = express.Router();
+import db from '../db/database.js';
 
-import Product from '../models/product.js';
-import Order from '../models/order.js';
-import OrderItem from '../models/order_item.js';
+const { Order, OrderItem, Product } = db;
+
+// import Product from '../models/product.js';
+// import Order from '../models/order.js';
+// import OrderItem from '../models/order_item.js';
 
 export default (app, passport) => {
     app.use('/cart', router);
