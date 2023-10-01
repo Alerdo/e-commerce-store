@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 
-class CartItem extends Model {
+class CartItemModel extends Model {
     static initialize(sequelize) {
         this.init({
             id: {
@@ -32,4 +32,4 @@ class CartItem extends Model {
     }
 }
 
-export default CartItem;
+export default CartItemModel;

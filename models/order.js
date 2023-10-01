@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 
-class Order extends Model {
+class OrderModel extends Model {
     static initialize(sequelize) {
         this.init({
             id: {
@@ -27,4 +27,4 @@ class Order extends Model {
     }
 }
 
-export default Order;
+export default OrderModel;
