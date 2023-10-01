@@ -1,8 +1,11 @@
 import express from "express";
 const router = express.Router();
 import hashPassword from "./helperFunctions.js";
-import db from '../db/database.js';
-const { User, Cart } = db;
+// import db from '../db/database.js';
+// const { User, Cart } = db;
+
+import User from '../models/user.js';
+import Cart from '../models/cart.js';
 
 export default (app, passport) => {
     app.use('/authentication', router);

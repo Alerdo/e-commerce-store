@@ -1,9 +1,7 @@
 
 import express from 'express';
 const router = express.Router();
-import db from '../db/database.js';
-
-const { Order } = db;
+import Order from '../models/order.js';
 
 export default (app, passport) => {
     app.use('/cart', router);

@@ -1,8 +1,8 @@
 import express from 'express';
 const router = express.Router();
-import db from '../db/database.js';
-const {Product} = db;
-
+// import db from '../db/database.js';
+// const {Product} = db;
+import Product from '../models/product.js';
 
 
 
