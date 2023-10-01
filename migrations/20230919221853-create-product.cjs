@@ -9,29 +9,29 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       description: {
         type: Sequelize.TEXT
       },
       price: {
-        type: Sequelize.DECIMAL
+        allowNull: false,
+        type: Sequelize.DECIMAL(10, 2)
       },
       stock_quantity: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       image_url: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

@@ -9,15 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       email: {
         allowNull: false,
         type: Sequelize.STRING,
         unique: true
       },
       password: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       name: {
@@ -29,11 +27,11 @@ module.exports = {
       registration_date: {
         type: Sequelize.DATE
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
