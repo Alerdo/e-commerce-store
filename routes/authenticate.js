@@ -18,7 +18,6 @@ export default (app, passport) => {
             const { email, name, address } = req.body;
             let { password } = req.body;
     
-            // Check if user with provided email already exists
             const existingUser = await User.findOne({ where: { email: email } });
             if (existingUser) {
                 return res.status(400).json({ success: false, message: 'Email already in use' });
@@ -26,7 +25,6 @@ export default (app, passport) => {
     
             password = await hashPassword(password); 
     
-            //  Create a new user
             const user = await User.create({
                 email,
                 password,
@@ -34,17 +32,19 @@ export default (app, passport) => {
                 address
             });
         
-            // Create a new cart for the user upon registration
             await Cart.create({ user_id: user.id });
     
-            // Response
             res.status(200).json({ success: true, message: 'User registered successfully!' });
     
         } catch (error) {
             console.error('Error during registration:', error);
-            res.status(500).json({ success: false, message: 'Server error during registration' });
+            
+            // During development, you can send back a detailed error message.
+            // In production, you might want to revert to a more generic error message.
+            res.status(500).json({ success: false, message: `Server error during registration: ${error.message}` });
         }
     });
+    
     
    
     // Login
