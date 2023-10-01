@@ -27,7 +27,7 @@ export default (app, passport) => {
           }
           
         } catch (error) {
-          res.status(500).json({ error: 'An error occurred while fetching data' });
+          res.status(500).json({ error: `this is the log of the error: ${error}`});
         }
       });
       
