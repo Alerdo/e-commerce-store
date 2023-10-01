@@ -21,19 +21,19 @@ class User extends Model {
                 name: DataTypes.STRING,
                 address: DataTypes.TEXT,
                 registration_date: DataTypes.DATE,
-                created_at: {
+                createdAt: {
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on create
                 },
-                updated_at: {
+                updatedAt: {
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on update
                 },
             },
             {
                 sequelize,
-                modelName: 'user',
-                tableName: 'users',
+                modelName: 'User', // Change to 'User' to match the table name
+                tableName: 'users', // Ensure the table name matches your database table name
                 underscored: true,
                 timestamps: true, // Enable timestamps
                 createdAt: 'created_at', // Specify the column name for 'created_at'
