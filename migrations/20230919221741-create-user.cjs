@@ -15,7 +15,6 @@ module.exports = {
         unique: true
       },
       password: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       name: {
@@ -27,11 +26,11 @@ module.exports = {
       registration_date: {
         type: Sequelize.DATE
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
