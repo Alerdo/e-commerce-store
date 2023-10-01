@@ -1,20 +1,20 @@
 
 
 import { Sequelize } from 'sequelize';
-import configJson from '../config/config.js';
+import {sequelize} from '../setup/express.js'
 
-const env = process.env.NODE_ENV || 'development';
+// const env = process.env.NODE_ENV || 'development';
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    protocol: 'postgres',
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
-    }
-});
+// const sequelize = new Sequelize(process.env.DATABASE_URL, {
+//     dialect: 'postgres',
+//     protocol: 'postgres',
+//     dialectOptions: {
+//         ssl: {
+//             require: true,
+//             rejectUnauthorized: false
+//         }
+//     }
+// });
 
 // Models
 import User from '../models/user.js';
@@ -67,8 +67,7 @@ OrderItem.initialize(sequelize, Sequelize.DataTypes);
 //   });
 
 export {
-  sequelize,
-  Sequelize,
+//   Sequelize,
   User,
   Product,
   Order,
