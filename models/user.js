@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 
 
-class UserModel extends Model {
+class User extends Model {
     static initialize(sequelize) {
         this.init({
             id: {
@@ -31,4 +31,4 @@ class UserModel extends Model {
     }
 }
 
-export default UserModel;
+export default User;
