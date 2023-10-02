@@ -21,11 +21,11 @@ class User extends Model {
                 name: DataTypes.STRING,
                 address: DataTypes.TEXT,
                 registration_date: DataTypes.DATE,
-                created_at: {
+                createdAt: {
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on create
                 },
-                updated_at: {
+                updatedAt: {
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on update
                 },
