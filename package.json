@@ -10,11 +10,11 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "npx sequelize-cli db:migrate",
-    "sequelize": "sequelize", 
-    "db:migrate": "sequelize db:migrate",
-    "heroku-postbuild": "sequelize db:migrate",
-    "db:seed": "sequelize db:seed:all"
-  },
+    "sequelize": "npx sequelize-cli",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "heroku-postbuild": "npx sequelize-cli db:migrate",
+    "db:seed": "npx sequelize-cli db:seed:all"
+},
   "keywords": [
     "\"e-commerce\"",
     "\"REST\"",
@@ -39,10 +39,11 @@
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.33.0",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "sequelize-cli": "^6.6.1"
   },
   "devDependencies": {
-    "sequelize-cli": "^6.6.1"
+   
   },
   "type": "module"
 }
