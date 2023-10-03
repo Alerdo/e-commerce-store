@@ -1,6 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
 
-
 class OrderItem extends Model {
     static initialize(sequelize) {
         this.init({
@@ -25,13 +24,20 @@ class OrderItem extends Model {
             },
             quantity: DataTypes.INTEGER,
             price_at_time_of_purchase: DataTypes.FLOAT,
+            createdAt: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on create
+            },
+            updatedAt: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on update
+            },
         }, {
             sequelize,
             modelName: 'orderItem',
             tableName: 'order_items',
-            underscored: true,
+            underscored: false, // Since your columns are in camelCase, set this to false
         });
-
     }
 }
 

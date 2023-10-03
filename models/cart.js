@@ -25,7 +25,7 @@ class Cart extends Model {
                 defaultValue: DataTypes.NOW,
                 field: 'createdAt'  // Explicitly specify the database's column name
             },
-            updatedAt: {
+            updatedAt:  {
                 type: DataTypes.DATE,
                 defaultValue: DataTypes.NOW,
                 field: 'updatedAt'  // Explicitly specify the database's column name

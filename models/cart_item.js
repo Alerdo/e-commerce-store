@@ -23,11 +23,19 @@ class CartItem extends Model {
                 },
             },
             quantity: DataTypes.INTEGER,
+            createdAt: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on create
+            },
+            updatedAt: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on update
+            },
         }, {
             sequelize,
             modelName: 'cartItem',
             tableName: 'cart_items',
-            underscored: true,
+            underscored: false, // Since your columns are in camelCase, set this to false
         });
     }
 }

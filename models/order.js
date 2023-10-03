@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 
-class Order extends Model {
+class OrderItem extends Model {
     static initialize(sequelize) {
         this.init({
             id: {
@@ -8,23 +8,37 @@ class Order extends Model {
                 autoIncrement: true,
                 primaryKey: true,
             },
-            user_id: {
+            order_id: {
                 type: DataTypes.INTEGER,
                 references: {
-                    model: 'users',
+                    model: 'orders',
                     key: 'id'
                 },
             },
-            order_date: DataTypes.DATE,
-            shipping_address: DataTypes.TEXT,
-            status: DataTypes.STRING,
+            product_id: {
+                type: DataTypes.INTEGER,
+                references: {
+                    model: 'products',
+                    key: 'id'
+                },
+            },
+            quantity: DataTypes.INTEGER,
+            price_at_time_of_purchase: DataTypes.FLOAT,
+            createdAt: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on create
+            },
+            updatedAt: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on update
+            },
         }, {
             sequelize,
-            modelName: 'order',
-            tableName: 'orders',
-            underscored: true,
+            modelName: 'orderItem',
+            tableName: 'order_items',
+            underscored: false, // Since your columns are in camelCase, set this to false
         });
     }
 }
 
-export default Order;
+export default OrderItem;
