@@ -24,30 +24,12 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
 });
 
 export default (app) => {
-    // const CORS_ORIGIN = process.env.NODE_ENV === "production" ? process.env.PROD_FRONTEND_URL : 'https://estorefrontend.vercel.app/';
-    const allowedOrigins = [
-        'https://estorefrontend.vercel.app/',
-        'https://estorefrontend-git-master-alerdo.vercel.app/',
-        'https://estorefrontend-ohtrfdxnt-alerdo.vercel.app/'
-       
-    ];
-    
-    // const allowedOrigins = ["https://example1.com", "https://example2.com"];
+    const CORS_ORIGIN = process.env.NODE_ENV === "production" ? process.env.PROD_FRONTEND_URL : 'https://estorefrontend.vercel.app/';
 
     app.use(cors({
-        origin: function (origin, callback) {
-            console.log("Incoming request origin:", origin); // <-- Log the incoming origin here
-    
-            if (!origin) return callback(null, true);  // Allow requests with no origin 
-                                                      // (like mobile apps or curl requests)
-            if (allowedOrigins.indexOf(origin) === -1) {
-                const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-                return callback(new Error(msg), false);
-            }
-            return callback(null, true);
-        }
+        origin: '*',
+        credentials: true
     }));
-    
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
