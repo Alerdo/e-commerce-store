@@ -24,7 +24,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
 });
 
 export default (app) => {
-    const CORS_ORIGIN = process.env.NODE_ENV === "production" ? process.env.PROD_FRONTEND_URL : 'http://localhost:3000';
+    const CORS_ORIGIN = process.env.NODE_ENV === "production" ? process.env.PROD_FRONTEND_URL : 'https://estorefrontend-qwvkis3y6-alerdo.vercel.app/';
 
     app.use(cors({
         origin: CORS_ORIGIN,
