@@ -32,21 +32,22 @@ export default (app) => {
        
     ];
     
+    // const allowedOrigins = ["https://example1.com", "https://example2.com"];
+
     app.use(cors({
         origin: function (origin, callback) {
-            // Allow requests with no origin (like mobile apps or curl requests)
-            if (!origin) return callback(null, true);
-            
+            console.log("Incoming request origin:", origin); // <-- Log the incoming origin here
+    
+            if (!origin) return callback(null, true);  // Allow requests with no origin 
+                                                      // (like mobile apps or curl requests)
             if (allowedOrigins.indexOf(origin) === -1) {
-                const errMsg = 'The CORS policy for this site does not allow access from the specified Origin.';
-                return callback(new Error(errMsg), false);
+                const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+                return callback(new Error(msg), false);
             }
-            
             return callback(null, true);
-        },
-        credentials: true
+        }
     }));
-
+    
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
