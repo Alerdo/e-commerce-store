@@ -8,7 +8,7 @@ if (!process.env.DEVELOPMENT_DB_USERNAME) {
 
 
 
-const config = {
+const config =  {
   development: {
     username: process.env.DEVELOPMENT_DB_USERNAME,
     password: process.env.DEVELOPMENT_DB_PASSWORD,

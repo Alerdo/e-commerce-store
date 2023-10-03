@@ -1,4 +1,4 @@
-export const up = async (queryInterface, Sequelize) => {
+export const up =  async (queryInterface, Sequelize) => {
   await queryInterface.createTable('cart_items', {
     id: {
       allowNull: false,

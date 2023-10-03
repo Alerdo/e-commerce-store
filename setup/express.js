@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import { Sequelize } from 'sequelize';
 import SequelizeStoreInit from 'connect-session-sequelize'; //session memory 
 
-const SequelizeStore = SequelizeStoreInit(session.Store);
+const SequelizeStore =  SequelizeStoreInit(session.Store);
 
 
 const env = process.env.NODE_ENV || 'development';

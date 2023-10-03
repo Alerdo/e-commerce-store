@@ -68,7 +68,7 @@ sequelize.authenticate()
 
 
 
-  const db = {
+  const db =  {
     User,
     Product,
     Order,

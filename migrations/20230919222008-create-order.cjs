@@ -29,6 +29,6 @@ export const up = async (queryInterface, Sequelize) => {
   });
 };
 
-export const down = async (queryInterface) => {
+export const down =  async (queryInterface) => {
   await queryInterface.dropTable('orders');
 };

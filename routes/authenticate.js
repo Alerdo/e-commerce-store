@@ -23,7 +23,7 @@ export default (app, passport) => {
                 return res.status(400).json({ success: false, message: 'Email already in use' });
             }
     
-            password = await hashPassword(password); 
+            password =  await hashPassword(password); 
     
             const user = await User.create({
                 email,
