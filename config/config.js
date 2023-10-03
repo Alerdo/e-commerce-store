@@ -1,12 +1,10 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 
 dotenv.config();
 
 if (!process.env.DEVELOPMENT_DB_USERNAME) {
   throw new Error("DEVELOPMENT_DB_USERNAME is not defined in the environment variables.");
 }
-
-
 
 const config = {
   development: {
@@ -35,4 +33,4 @@ const config = {
   }
 };
 
-export default config;
+module.exports = config;
