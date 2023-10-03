@@ -14,7 +14,7 @@
     "db:migrate": "npx sequelize-cli db:migrate",
     "heroku-postbuild": "npx sequelize-cli db:migrate",
     "db:seed": "npx sequelize-cli db:seed:all"
-},
+  },
   "keywords": [
     "\"e-commerce\"",
     "\"REST\"",
@@ -30,6 +30,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+    "esm": "^3.2.25",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "js-yaml": "^4.1.0",
@@ -39,11 +40,12 @@
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.33.0",
-    "swagger-ui-express": "^5.0.0",
-    "sequelize-cli": "^6.6.1"
+    "sequelize-cli": "^6.6.1",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
-   
+    "@babel/preset-env": "^7.22.20",
+    "@babel/register": "^7.22.15"
   },
   "type": "module"
 }
