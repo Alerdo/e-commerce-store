@@ -34,4 +34,33 @@ export default (app, passport) => {
         });
     }
 });
+
+
+// ... other imports and code
+
+router.post('/bulk', async (req, res) => {
+    const productsArray = req.body;
+
+    // Validation: Check if productsArray is an array and has content
+    if (!Array.isArray(productsArray) || productsArray.length === 0) {
+        return res.status(400).json({ message: 'Please send a valid array of products.' });
+    }
+
+    try {
+        const createdProducts = await Product.bulkCreate(productsArray);
+
+        // Return the created products
+        res.status(201).json(createdProducts);
+
+    } catch (error) {
+        res.status(500).json({ 
+            errorName: error.name, 
+            errorMessage: error.message, 
+            errorStack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    }
+});
+
+
+
 }
