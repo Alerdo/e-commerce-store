@@ -14,13 +14,27 @@ class Cart extends Model {
                     model: 'users',
                     key: 'id'
                 },
+                field: 'user_id',  // Explicitly specify the database's column name
             },
-            creation_date: DataTypes.DATE,
+            creation_date: {
+                type: DataTypes.DATE,
+                field: 'creation_date'  // Explicitly specify the database's column name
+            },
+            createdAt: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW,
+                field: 'createdAt'  // Explicitly specify the database's column name
+            },
+            updatedAt: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW,
+                field: 'updatedAt'  // Explicitly specify the database's column name
+            }
         }, {
             sequelize,
             modelName: 'cart',
             tableName: 'carts',
-            underscored: true,
+            underscored: false,  // Turn off underscored as your database columns are not in snake_case
         });
     }
 }
