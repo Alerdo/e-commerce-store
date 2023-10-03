@@ -21,23 +21,22 @@ class User extends Model {
                 name: DataTypes.STRING,
                 address: DataTypes.TEXT,
                 registration_date: DataTypes.DATE,
-                created_at: {
+                createdAt: {
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on create
+                    field: 'createdAt'  // Explicitly specifying database's column name
                 },
-                updated_at: {
+                updatedAt: {
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW, // Automatically set to the current timestamp on update
+                    field: 'updatedAt'  // Explicitly specifying database's column name
                 },
             },
             {
                 sequelize,
                 modelName: 'user',
                 tableName: 'users',
-                underscored: true,
-                // timestamps: true, 
-                createdAt: 'created_at', // Specify the column name for 'created_at'
-                updatedAt: 'updated_at', // Specify the column name for 'updated_at'
+                underscored: false,  // Turned off underscored as your database columns are not in snake_case
             }
         );
     }
