@@ -35,7 +35,7 @@ class User extends Model {
                 modelName: 'user',
                 tableName: 'users',
                 underscored: true,
-                timestamps: true, // Enable timestamps
+                // timestamps: true, 
                 createdAt: 'created_at', // Specify the column name for 'created_at'
                 updatedAt: 'updated_at', // Specify the column name for 'updated_at'
             }
