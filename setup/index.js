@@ -23,9 +23,13 @@ export default async (app) => {
 
   // Error Handler
   app.use((err, req, res, next) => {
-    const { message, status = 500 } = err; // Default to 500 if no status is provided
+    if (res.headersSent) {
+        // If headers are already sent, delegate the error to the default Express error handler
+        return next(err);
+    }
+    const { message, status = 500 } = err;
     return res.status(status).send({ message });
-  });
+});
 
 
  
