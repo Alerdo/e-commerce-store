@@ -27,7 +27,7 @@ export default (app) => {
     const CORS_ORIGIN = process.env.NODE_ENV === "production" ? process.env.PROD_FRONTEND_URL : 'https://estorefrontend.vercel.app/';
 
     app.use(cors({
-        origin: 'https://estorefrontend.vercel.app',
+        origin: '*',
         credentials: true
     }));
 
