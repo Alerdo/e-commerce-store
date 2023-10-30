@@ -9,15 +9,39 @@ const { Cart, Product, CartItem, User} = db;
 // import Cart from '../models/cart.js';
 // import CartItem from '../models/cart_item.js';
 
+const isAuthenticated = (req, res, next) => {
+  console.log('Entering isAuthenticated middleware...');
+
+  // Check the authentication status
+  if (req.isAuthenticated()) {
+    console.log('User is authenticated!');
+    return next();
+  }
+
+  // Log session details for debugging
+  if (req.session) {
+    console.log('Session details:', JSON.stringify(req.session, null, 2));
+  } else {
+    console.log('No session found.');
+  }
+
+  // Log user details if present
+  if (req.user) {
+    console.log('User details:', JSON.stringify(req.user, null, 2));
+  } else {
+    console.log('No user found in the request.');
+  }
+
+  console.log('User is not authenticated. Sending 401 response.');
+  res.status(401).send({ message: 'Unauthorized, Please Login to access cart' });
+};
+
+
 export default (app, passport) => {
     app.use('/cart_items', router);
 
       // Middleware to check if user is authenticated
-      const isAuthenticated = (req, res, next) => {
-        if (req.isAuthenticated()) return next();
-        res.status(401).send({ message: 'Unauthorized, Please Login to access cart' });
-    };
-
+ 
     // router.use((req, res, next) => { //checking if the req.user is being populated 
     //     console.log(`Res.user object check: ${req.user}`);
     //     next();
