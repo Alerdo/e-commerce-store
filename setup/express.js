@@ -7,10 +7,8 @@ import cookieParser from 'cookie-parser';
 import { Sequelize } from 'sequelize';
 import SequelizeStoreInit from 'connect-session-sequelize'; //session memory 
 
-const SequelizeStore =  SequelizeStoreInit(session.Store);
-
-
 const env = process.env.NODE_ENV || 'development';
+
 // Initialize Sequelize directly here
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
@@ -22,6 +20,13 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
         }
     }
 });
+
+// Initialize SequelizeStore with sequelize instance
+const SequelizeStore = SequelizeStoreInit(session.Store);
+const sessionStore = new SequelizeStore({ db: sequelize });
+
+// Sync the session store with the database
+sessionStore.sync();
 
 export default (app) => {
     const CORS_ORIGIN = process.env.NODE_ENV === "production" ? process.env.PROD_FRONTEND_URL : 'https://estorefrontend.vercel.app/';
@@ -42,9 +47,7 @@ export default (app) => {
             secret: process.env.SESSION_SECRET,
             resave: false,
             saveUninitialized: false,
-            store: new SequelizeStore({
-                db: sequelize,
-            }),
+            store: sessionStore, // Use the sessionStore we initialized earlier
             cookie: {
                 secure: process.env.NODE_ENV === "production",  
                 maxAge: 24 * 60 * 60 * 1000 
