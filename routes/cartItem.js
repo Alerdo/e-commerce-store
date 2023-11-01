@@ -42,10 +42,10 @@ export default (app, passport) => {
 
       // Middleware to check if user is authenticated
  
-    // router.use((req, res, next) => { //checking if the req.user is being populated 
-    //     console.log(`Res.user object check: ${req.user}`);
-    //     next();
-    // });
+    router.use((req, res, next) => { //checking if the req.user is being populated 
+        console.log(`Res.user object check: ${req.user}`);
+        next();
+    });
     
 // Add Item to Cart it will probarly be a button in the front end
 router.post('/add-item', isAuthenticated, async (req, res) => {
