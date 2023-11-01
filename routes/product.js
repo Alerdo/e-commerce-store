@@ -36,6 +36,43 @@ export default (app, passport) => {
 });
 
 
+router.put('/update', async (req, res) => {
+    // Extracting id and newDescription from request body
+    const { id, newDescription } = req.body;
+
+    // Validation: Check if id and newDescription are provided
+    if (id == null || !newDescription) {
+        return res.status(400).json({ message: 'Please provide both the product ID and the new description.' });
+    }
+
+    try {
+        // Find the product by ID
+        const product = await Product.findByPk(id);
+
+        // Check if product exists
+        if (!product) {
+            return res.status(404).json({ message: `Product with ID ${id} not found.` });
+        }
+
+        // Update the product description
+        product.description = newDescription;
+        await product.save();
+
+        // Return the updated product
+        res.status(200).json({
+            message: 'Product updated successfully',
+            updatedProduct: product
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            errorName: error.name,
+            errorMessage: error.message,
+            errorStack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    }
+});
+
 // ... other imports and code
 router.post('/create', async (req, res) => {
     const { name, description, price, stock_quantity, image_url } = req.body;
