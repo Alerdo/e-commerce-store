@@ -31,7 +31,7 @@ sessionStore.sync().then(() => {
 }).catch(err => {
     console.error("Error syncing session store:", err);
 });
-
+                                                                                                
 export default (app) => {
     const CORS_ORIGIN = process.env.NODE_ENV === "production" ? process.env.PROD_FRONTEND_URL : 'https://estorefrontend.vercel.app/';
     console.log(`CORS origin set to: ${CORS_ORIGIN}`);

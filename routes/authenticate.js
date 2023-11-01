@@ -50,23 +50,27 @@ export default (app, passport) => {
     // Login
     router.post('/login', (req, res, next) => {
         passport.authenticate('local', (err, user, info) => {
+            // Server error during authentication
             if (err) {
                 console.error('Server error:', err);
-                return res.status(500).send({ message: 'Server error' });
+                return res.status(500).json({ success: false, message: 'Server error' });
             }
-        
+    
+            // User not found or invalid credentials
             if (!user) {
-                if (info && info.message) {
-                    return res.status(401).json({ success: false, message: info.message });
-                }
-                return res.status(401).json({ success: false, message: 'Authentication failed' });
+                let message = info?.message || 'Authentication failed';
+                console.error('Authentication error:', message);
+                return res.status(401).json({ success: false, message: message });
             }
-            
+    
+            // Attempt to log the user in
             req.logIn(user, (err) => {
                 if (err) {
                     console.error('Login process error:', err);
-                    return res.status(500).send({ message: 'Error during the login process' });
+                    return res.status(500).json({ success: false, message: 'Error during the login process' });
                 }
+                
+                console.log('Successfully logged in user:', user.id); // log user ID for debugging
                 return res.json({ success: true, message: 'Successfully logged in!' });
             });
         })(req, res, next);
