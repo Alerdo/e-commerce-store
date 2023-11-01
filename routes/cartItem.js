@@ -11,6 +11,7 @@ const { Cart, Product, CartItem, User} = db;
 
 const isAuthenticated = (req, res, next) => {
   console.log('Entering isAuthenticated middleware...');
+  console.log('Cookies:', req.headers.cookie);
 
   // Check the authentication status
   if (req.isAuthenticated()) {
