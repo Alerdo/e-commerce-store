@@ -8,7 +8,7 @@ class CartItem extends Model {
                 autoIncrement: true,
                 primaryKey: true,
             },
-            cartId: { // changed from `cart_id` to `cartId`
+            cartId: {
                 field: 'cart_id', // maps `cartId` to `cart_id` in the database
                 type: DataTypes.INTEGER,
                 references: {
@@ -16,7 +16,7 @@ class CartItem extends Model {
                     key: 'id'
                 },
             },
-            productId: { // changed from `product_id` to `productId`
+            productId: {
                 field: 'product_id', // maps `productId` to `product_id` in the database
                 type: DataTypes.INTEGER,
                 references: {
@@ -28,18 +28,16 @@ class CartItem extends Model {
             createdAt: {
                 type: DataTypes.DATE,
                 defaultValue: DataTypes.NOW,
-                field: 'created_at' // added this line
             },
             updatedAt: {
                 type: DataTypes.DATE,
                 defaultValue: DataTypes.NOW,
-                field: 'updated_at' // added this line
             },
         }, {
             sequelize,
             modelName: 'cartItem',
             tableName: 'cart_items',
-            underscored: true, // This option auto-generates snake_case column names from camelCase attribute names
+            underscored: false, // Since your columns are in camelCase, set this to false
         });
     }
 }
