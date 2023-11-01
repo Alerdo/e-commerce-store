@@ -57,7 +57,9 @@ export default (app) => {
             store: sessionStore,
             cookie: {
                 secure: process.env.NODE_ENV === "production",
-                maxAge: 24 * 60 * 60 * 1000 
+                maxAge: 24 * 60 * 60 * 1000 ,
+                sameSite: 'None', // Important for cross-origin cookies
+                secure: true, 
             }
         })
     );
