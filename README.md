@@ -31,3 +31,10 @@ The project uses a PostgreSQL database to store and manage data. Below is an ove
 - **OrderItems**: The `OrderItems` table connects products to user orders. It includes fields like `order_id` (foreign key to `Orders`), `product_id` (foreign key to `Products`), and `quantity` to represent the number of items in each order.
 
 These tables and their relationships are defined in the project's database schema. The schema and migrations are managed using Sequelize.
+
+
+
+## Front-End Repository
+
+For the corresponding front-end application that interacts with this backend, please visit our [Front-End Repository]([https://github.com/yourusername/e-commerce-frontend](https://github.com/Alerdo/e-store-front-end)https://github.com/Alerdo/e-store-front-end).
+
