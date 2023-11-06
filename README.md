@@ -36,5 +36,5 @@ These tables and their relationships are defined in the project's database schem
 
 ## Front-End Repository
 
-For the corresponding front-end application that interacts with this backend, please visit our [Front-End Repository]([https://github.com/yourusername/e-commerce-frontend](https://github.com/Alerdo/e-store-front-end)https://github.com/Alerdo/e-store-front-end).
+For the corresponding front-end application that interacts with this backend, please visit our [Front-End Repository]((https://github.com/Alerdo/e-store-front-end)https://github.com/Alerdo/e-store-front-end).
 
