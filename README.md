@@ -2,6 +2,14 @@
 
 Welcome to the E-Commerce Store Backend repository! This backend API is the core of this e-commerce application, providing a wide range of functionalities including user authentication, user profiles, shopping carts, and order processing.
 
+### Live Project
+[View Live Project](https://www.shop.alerdo-ballabani.co.uk/) 
+
+## Front-End Repository
+
+For the corresponding front-end application that interacts with this backend, please visit our [![Front-End Repository](https://img.shields.io/badge/Front--End-Repository-blue)](https://github.com/Alerdo/e-store-front-end)
+
+
 ## Project Overview
 
 E-commerce store backend is built with the following key features and components:
@@ -34,7 +42,4 @@ These tables and their relationships are defined in the project's database schem
 
 
 
-## Front-End Repository
-
-For the corresponding front-end application that interacts with this backend, please visit our [![Front-End Repository](https://img.shields.io/badge/Front--End-Repository-blue)](https://github.com/Alerdo/e-store-front-end)
 
